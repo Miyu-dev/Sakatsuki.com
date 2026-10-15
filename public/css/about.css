@@ -1,0 +1,119 @@
+body {
+  margin: 0;
+  background: #0B0910;
+  color: #E6E1EE;
+}
+a { color: #A57CF2; }
+a:hover { color: #C2A3FF; }
+
+main {
+  --fs: max(10px, min(1.5vw, 24px, calc((100vh - 128px) / 30)));
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px;
+  box-sizing: border-box;
+  background: radial-gradient(ellipse at 50% 120%, #15101F 0%, #0B0910 60%);
+  font-family: 'Shippori Mincho B1', serif;
+}
+
+.home {
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  left: 24px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: #6C5F86;
+  text-decoration: none;
+  transition: color .2s;
+}
+.home:hover { color: #C2A3FF; }
+
+.moon {
+  position: absolute;
+  right: -18vmin;
+  top: -22vmin;
+  width: 110vmin;
+  height: 110vmin;
+  border-radius: 50%;
+  border: 1px solid rgba(165, 124, 242, 0.07);
+  background: radial-gradient(circle at 38% 40%, #16121F 0%, #0F0C16 70%);
+  box-shadow: inset 10px -6px 24px -10px rgba(165, 124, 242, 0.22), 0 0 80px rgba(91, 45, 184, 0.06);
+  pointer-events: none;
+}
+
+.columns {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 5vw, 96px);
+}
+
+.verse {
+  writing-mode: vertical-rl;
+  font-size: var(--fs);
+  line-height: 2.6;
+  letter-spacing: 0.22em;
+  color: #D9D3E3;
+  white-space: nowrap;
+}
+.verse p { margin: 0; }
+.verse p:last-child {
+  margin-left: 1.6em;
+  color: #9C94AB;
+}
+.verse.mirror { transform: rotate(180deg); }
+
+.title {
+  writing-mode: vertical-rl;
+  font-size: var(--fs);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.title h1,
+.title .reflection {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  margin: 0;
+  font-size: 1em;
+  font-weight: 400;
+  color: #A57CF2;
+}
+.title .dash {
+  font-size: 1.2em;
+  color: #6C5F86;
+}
+.title b {
+  font-size: 3.4em;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+.title .line {
+  writing-mode: horizontal-tb;
+  width: 9em;
+  height: 1px;
+  margin: 0.7em 0;
+  background: linear-gradient(to right, transparent, rgba(165, 124, 242, 0.55), transparent);
+}
+.title .reflection {
+  --fade: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.08) 90%);
+  transform: scaleY(-1);
+  filter: blur(0.4px);
+  -webkit-mask: var(--fade);
+  mask: var(--fade);
+}
+
+@media (max-width: 640px) {
+  main { --fs: min(17px, calc((100vw - 68px) / 19.5)); }
+  .verse.mirror { display: none; }
+  .title .line { width: 4.5em; }
+}
