@@ -1,0 +1,181 @@
+body {
+  margin: 0;
+  background: #15121C;
+  color: #F6F5F8;
+  font-family: Helvetica, Arial, sans-serif;
+}
+a { color: #F2C55A; }
+a:hover { color: #FFFFFF; }
+
+main {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  box-sizing: border-box;
+}
+
+.sky {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.sky span {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--w);
+  height: 1.5px;
+  border-radius: 1px;
+  background: linear-gradient(to right, transparent, var(--c, #FFFFFF));
+  box-shadow: calc(var(--w) / 2) 0 3px rgba(255, 231, 163, 0.35);
+  transform-origin: 0 0;
+  opacity: 0;
+  animation: meteor var(--dur) linear var(--delay) infinite;
+}
+.sky span:nth-child(1) { --x: 70%; --y: 8%;  --w: 56px; --dur: 9s;  --delay: 1s; }
+.sky span:nth-child(2) { --x: 86%; --y: 22%; --w: 40px; --dur: 13s; --delay: 4.5s; --c: #FFE7A3; }
+.sky span:nth-child(3) { --x: 54%; --y: 5%;  --w: 64px; --dur: 11s; --delay: 7.5s; }
+.sky span:nth-child(4) { --x: 96%; --y: 46%; --w: 36px; --dur: 15s; --delay: 2.5s; --c: #FFE7A3; }
+.sky span:nth-child(5) { --x: 38%; --y: 14%; --w: 48px; --dur: 17s; --delay: 11s; }
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 56px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 44px;
+}
+.divider {
+  flex: none;
+  width: 3px;
+  height: 120px;
+  background: #7B4FD6;
+}
+
+.emblem {
+  position: relative;
+  flex: none;
+  width: 180px;
+  height: 180px;
+  perspective: 700px;
+}
+.tilt {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateZ(-22deg) rotateX(72deg);
+  animation: ringTilt 4.5s ease-in-out infinite alternate;
+}
+.ring {
+  --edge: radial-gradient(farthest-side, transparent calc(100% - 12px), #000 calc(100% - 12px));
+  position: absolute;
+  left: 11px;
+  top: 11px;
+  width: 158px;
+  height: 158px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #B9831C, #E2AE3C 25%, #FFE7A3 38%, #F2C55A 46%, #D19A28 70%, #B9831C);
+  -webkit-mask: var(--edge);
+  mask: var(--edge);
+  animation: ringSpin 3.2s linear infinite;
+}
+.star {
+  position: absolute;
+  inset: 0;
+  transform: translateZ(0);
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.5));
+  animation: starFloat 3.6s ease-in-out infinite alternate;
+}
+.star i {
+  position: absolute;
+  inset: 0;
+}
+
+.star i:nth-child(1)  { background: #6A3CC8; clip-path: polygon(50% 21.9%, 57.34% 41.45%, 78.23% 42.39%, 61.89% 55.42%, 67.45% 75.58%, 50% 64.06%, 32.55% 75.58%, 38.11% 55.42%, 21.77% 42.39%, 42.66% 41.45%); }
+.star i:nth-child(2)  { background: #C2A3FF; clip-path: polygon(50% 51.56%, 42.66% 41.45%, 50% 21.9%); }
+.star i:nth-child(3)  { background: #9A6FEE; clip-path: polygon(50% 51.56%, 50% 21.9%, 57.34% 41.45%); }
+.star i:nth-child(4)  { background: #7B4FD6; clip-path: polygon(50% 51.56%, 57.34% 41.45%, 78.23% 42.39%); }
+.star i:nth-child(5)  { background: #5B2DB8; clip-path: polygon(50% 51.56%, 78.23% 42.39%, 61.89% 55.42%); }
+.star i:nth-child(6)  { background: #43208F; clip-path: polygon(50% 51.56%, 61.89% 55.42%, 67.45% 75.58%); }
+.star i:nth-child(7)  { background: #43208F; clip-path: polygon(50% 51.56%, 67.45% 75.58%, 50% 64.06%); }
+.star i:nth-child(8)  { background: #5B2DB8; clip-path: polygon(50% 51.56%, 50% 64.06%, 32.55% 75.58%); }
+.star i:nth-child(9)  { background: #7B4FD6; clip-path: polygon(50% 51.56%, 32.55% 75.58%, 38.11% 55.42%); }
+.star i:nth-child(10) { background: #9A6FEE; clip-path: polygon(50% 51.56%, 38.11% 55.42%, 21.77% 42.39%); }
+.star i:nth-child(11) { background: #C2A3FF; clip-path: polygon(50% 51.56%, 21.77% 42.39%, 42.66% 41.45%); }
+
+.logo {
+  margin: 0;
+  font-size: min(clamp(36px, 6vw, 68px), calc((100vw - 48px) / 10.634));
+  width: 10.634em;
+  aspect-ratio: 1063.4 / 78.2;
+  overflow: hidden;
+  text-indent: 200%;
+  white-space: nowrap;
+  background: url("data:image/svg+xml,%3Csvg viewBox='3.6 -76.6 1063.4 78.2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23F6F5F8' d='M3.6-24.6L3.6-24.6L24.7-24.6Q25.2-21.5 27.6-19.2Q30-16.9 34.1-15.7Q38.1-14.4 43.6-14.4L43.6-14.4Q51.2-14.4 55.6-16.4Q60-18.3 60-22.1L60-22.1Q60-25 57.5-26.6Q55-28.2 47.9-28.9L47.9-28.9L33.9-30.2Q18.4-31.6 11.4-37.3Q4.4-42.9 4.4-52.5L4.4-52.5Q4.4-60.3 9.0-65.7Q13.5-71.1 21.8-73.9Q30-76.6 41-76.6L41-76.6Q51.8-76.6 60.2-73.5Q68.6-70.5 73.5-64.9Q78.5-59.3 78.9-51.9L78.9-51.9L57.9-51.9Q57.5-54.6 55.4-56.6Q53.2-58.5 49.5-59.6Q45.8-60.6 40.6-60.6L40.6-60.6Q33.6-60.6 29.5-58.8Q25.4-56.9 25.4-53.3L25.4-53.3Q25.4-50.7 27.9-49.1Q30.3-47.5 36.7-46.9L36.7-46.9L51.6-45.4Q62.3-44.4 68.7-42.0Q75.1-39.5 78-35.2Q80.9-30.9 80.9-24.5L80.9-24.5Q80.9-16.6 76.2-10.8Q71.5-4.9 63-1.7Q54.5 1.6 43.2 1.6L43.2 1.6Q31.6 1.6 22.8-1.7Q13.9-4.9 8.9-10.9Q3.9-16.8 3.6-24.6ZM160.6-14.4L108.9-14.4L108.9-31.1L160.6-31.1L160.6-14.4ZM121.5-75L148.8-75L182.9 0L160.8 0L132.2-66.2L138.2-66.2L109.5 0L87.4 0L121.5-75ZM211.7 0L193 0L193-75L213.6-75L213.6-16.5L208.1-20.8L250.6-75L272.5-75L211.7 0ZM250 0L228.8-35.8L244-48.4L273.5 0L250 0ZM349.3-14.4L297.6-14.4L297.6-31.1L349.3-31.1L349.3-14.4ZM310.2-75L337.5-75L371.6 0L349.5 0L320.9-66.2L326.9-66.2L298.2 0L276.1 0L310.2-75ZM405.2 0L405.2-65.9L426-65.9L426 0L405.2 0ZM376.6-56.6L376.6-75L454.6-75L454.6-56.6L376.6-56.6ZM463.1-24.6L463.1-24.6L484.2-24.6Q484.7-21.5 487.1-19.2Q489.5-16.9 493.6-15.7Q497.6-14.4 503.1-14.4L503.1-14.4Q510.7-14.4 515.1-16.4Q519.5-18.3 519.5-22.1L519.5-22.1Q519.5-25 517-26.6Q514.5-28.2 507.4-28.9L507.4-28.9L493.4-30.2Q477.9-31.6 470.9-37.3Q463.9-42.9 463.9-52.5L463.9-52.5Q463.9-60.3 468.4-65.7Q473-71.1 481.3-73.9Q489.5-76.6 500.5-76.6L500.5-76.6Q511.3-76.6 519.7-73.5Q528.1-70.5 533.0-64.9Q538-59.3 538.4-51.9L538.4-51.9L517.4-51.9Q517-54.6 514.9-56.6Q512.7-58.5 509-59.6Q505.3-60.6 500.1-60.6L500.1-60.6Q493.1-60.6 489-58.8Q484.9-56.9 484.9-53.3L484.9-53.3Q484.9-50.7 487.4-49.1Q489.8-47.5 496.2-46.9L496.2-46.9L511.1-45.4Q521.8-44.4 528.2-42.0Q534.6-39.5 537.5-35.2Q540.4-30.9 540.4-24.5L540.4-24.5Q540.4-16.6 535.7-10.8Q531-4.9 522.5-1.7Q514 1.6 502.7 1.6L502.7 1.6Q491.1 1.6 482.3-1.7Q473.4-4.9 468.4-10.9Q463.4-16.8 463.1-24.6ZM573.5-75L573.5-33.5Q573.5-28.4 575.4-24.7Q577.4-20.9 581.3-18.9Q585.1-16.9 590.7-16.9L590.7-16.9Q596.4-16.9 600.2-18.9Q604-20.9 605.9-24.7Q607.8-28.4 607.8-33.5L607.8-33.5L607.8-75L628.6-75L628.6-32.5Q628.6-22.2 623.8-14.6Q619.1-6.9 610.6-2.7Q602.1 1.6 590.7 1.6L590.7 1.6Q579.4 1.6 570.8-2.7Q562.3-6.9 557.5-14.6Q552.8-22.2 552.8-32.5L552.8-32.5L552.8-75L573.5-75ZM663.3 0L644.6 0L644.6-75L665.2-75L665.2-16.5L659.7-20.8L702.2-75L724.1-75L663.3 0ZM701.6 0L680.4-35.8L695.6-48.4L725.1 0L701.6 0ZM734.6 0L734.6-75L755.3-75L755.3 0L734.6 0Z'/%3E%3Cpath fill='%23A57CF2' d='M779.2 0.9L779.2 0.9Q776.5 0.9 774.3-0.4Q772-1.7 770.7-4.0Q769.4-6.2 769.4-8.9L769.4-8.9Q769.4-11.7 770.7-14.0Q772-16.2 774.3-17.5Q776.5-18.8 779.2-18.8L779.2-18.8Q782-18.8 784.3-17.5Q786.5-16.2 787.8-14.0Q789.1-11.7 789.1-8.9L789.1-8.9Q789.1-6.2 787.8-4.0Q786.5-1.7 784.3-0.4Q782 0.9 779.2 0.9ZM851.1-23.2L867.8-23.2Q866.8-15.9 862.1-10.3Q857.5-4.7 850.2-1.6Q842.9 1.5 833.9 1.5L833.9 1.5Q823.7 1.5 815.9-2.3Q808.2-6 803.8-12.8Q799.5-19.6 799.5-28.4L799.5-28.4Q799.5-37.3 803.8-44.1Q808.2-50.8 815.9-54.6Q823.7-58.4 833.9-58.4L833.9-58.4Q842.9-58.4 850.2-55.3Q857.5-52.1 862.1-46.6Q866.8-41 867.8-33.6L867.8-33.6L851.1-33.6Q849.8-39.4 845.1-42.6Q840.5-45.7 833.9-45.7L833.9-45.7Q828.6-45.7 824.6-43.7Q820.7-41.6 818.6-37.8Q816.5-33.9 816.5-28.4L816.5-28.4Q816.5-23 818.6-19.2Q820.7-15.3 824.6-13.3Q828.6-11.2 833.9-11.2L833.9-11.2Q840.6-11.2 845.2-14.5Q849.9-17.8 851.1-23.2L851.1-23.2ZM912.4 1.5L912.4 1.5Q901.8 1.5 893.8-2.3Q885.8-6 881.3-12.8Q876.8-19.5 876.8-28.4L876.8-28.4Q876.8-37.4 881.3-44.2Q885.8-50.9 893.8-54.7Q901.8-58.4 912.4-58.4L912.4-58.4Q923.0-58.4 931.0-54.7Q939.0-50.9 943.4-44.2Q947.9-37.4 947.9-28.4L947.9-28.4Q947.9-19.5 943.4-12.8Q939.0-6 931.0-2.3Q923.0 1.5 912.4 1.5ZM912.4-11.2L912.4-11.2Q918.2-11.2 922.3-13.3Q926.5-15.4 928.7-19.3Q931.0-23.1 931.0-28.4L931.0-28.4Q931.0-33.8 928.7-37.6Q926.5-41.5 922.3-43.6Q918.2-45.7 912.4-45.7L912.4-45.7Q906.7-45.7 902.5-43.6Q898.3-41.5 896.0-37.6Q893.8-33.8 893.8-28.4L893.8-28.4Q893.8-23.1 896.0-19.3Q898.3-15.4 902.5-13.3Q906.7-11.2 912.4-11.2ZM961.5-37.7L957.9-56.9L974.6-56.9L978.2-35.2L978.2 0L961.5 0L961.5-37.7ZM998.5-58.4L998.5-58.4Q1006.1-58.4 1011.5-55.2Q1016.9-51.9 1019.7-45.9Q1022.6-39.9 1022.6-31.6L1022.6-31.6L1022.6 0L1005.9 0L1005.9-29.1Q1005.9-36.8 1002.5-40.8Q999.2-44.7 992.8-44.7L992.8-44.7Q988.3-44.7 985.0-42.6Q981.7-40.4 979.9-36.6Q978.2-32.8 978.2-27.5L978.2-27.5L972.7-30.4Q973.7-39.4 977.3-45.6Q980.9-51.8 986.3-55.1Q991.8-58.4 998.5-58.4ZM1042.8-58.4L1042.8-58.4Q1050.4-58.4 1055.8-55.2Q1061.3-51.9 1064.1-45.9Q1067.0-39.9 1067.0-31.6L1067.0-31.6L1067.0 0L1050.3 0L1050.3-29.1Q1050.3-36.8 1046.9-40.8Q1043.6-44.7 1037.2-44.7L1037.2-44.7Q1032.7-44.7 1029.4-42.6Q1026.1-40.4 1024.3-36.6Q1022.6-32.8 1022.6-27.5L1022.6-27.5L1017.1-30.4Q1018.1-39.4 1021.7-45.6Q1025.3-51.8 1030.7-55.1Q1036.2-58.4 1042.8-58.4Z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid #3A2C5C;
+  background: rgba(123, 79, 214, 0.06);
+  color: #FFFFFF;
+  transition: color .2s, border-color .2s, transform .2s;
+}
+.links a:hover {
+  border-color: #7B4FD6;
+  transform: translateY(-2px);
+}
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #4A3F5E;
+}
+
+@media (max-width: 640px) {
+  .brand { flex-direction: column; gap: 32px; }
+  .divider { width: 120px; height: 3px; }
+}
+
+@keyframes ringSpin {
+  to { transform: rotateZ(360deg); }
+}
+@keyframes ringTilt {
+  from { transform: rotateZ(-22deg) rotateY(-28deg) rotateX(72deg); }
+  to   { transform: rotateZ(-22deg) rotateY(28deg) rotateX(72deg); }
+}
+@keyframes starFloat {
+  from { transform: translateZ(0) translateY(-3px) rotateY(-14deg) rotateZ(-3deg); }
+  to   { transform: translateZ(0) translateY(3px) rotateY(14deg) rotateZ(3deg); }
+}
+@keyframes meteor {
+  0%   { transform: rotate(155deg) translateX(0); opacity: 0; }
+  2%   { opacity: 0.9; }
+  9%   { transform: rotate(155deg) translateX(380px); opacity: 0; }
+  100% { transform: rotate(155deg) translateX(380px); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sky span, .tilt, .ring, .star { animation: none !important; }
+}
