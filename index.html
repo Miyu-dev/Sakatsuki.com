@@ -1,36 +1,90 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="ja">
 <head>
-    <title>Sakatsuki.com</title>
-    <meta charset="UTF-8">
-    <meta name="description" content="Miyu Sakatsuki's Website.">
-    <link rel="stylesheet" media="screen" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/simpletextrotator.css" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="js/jquery.simple-text-rotator.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $(".rotate").textrotator({
-                animation: "fade",
-                separator: ",",
-                speed: 5000
-            });
-        });
-    </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAKATSUKI.com</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0.2' y1='0' x2='0.8' y2='1'%3E%3Cstop offset='0' stop-color='%23F7D374'/%3E%3Cstop offset='1' stop-color='%23D19A28'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cellipse cx='32' cy='32' rx='28' ry='8.5' transform='rotate(-22 32 32)' fill='none' stroke='%235B2DB8' stroke-width='4.5'/%3E%3Cpolygon points='32,14 36.7,26.53 50.07,27.13 39.61,35.47 43.17,48.37 32,41 20.83,48.37 24.39,35.47 13.93,27.13 27.3,26.53' fill='url(%23g)' stroke='%23B9831C' stroke-linejoin='round'/%3E%3Cpath d='M4 32A28 8.5 0 0 0 60 32' transform='rotate(-22 32 32)' fill='none' stroke='%237B4FD6' stroke-width='4.5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&display=swap">
+<style>
+body{margin:0;background:#15121C;color:#F6F5F8;font-family:Helvetica,Arial,sans-serif}
+a{color:#F2C55A}a:hover{color:#FFFFFF}
+main{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 24px;box-sizing:border-box}
+
+.sky{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.sky>div{position:absolute;transform:rotate(155deg);transform-origin:0 0}
+.meteor{height:1.5px;border-radius:1px;background:linear-gradient(to right,transparent,#FFFFFF);opacity:0;animation:meteor linear infinite}
+.meteor.gold{background:linear-gradient(to right,transparent,#FFE7A3)}
+
+.content{position:relative;display:flex;flex-direction:column;align-items:center;gap:56px}
+.brand{display:flex;align-items:center;gap:44px;flex-wrap:wrap;justify-content:center}
+
+.emblem{width:180px;height:180px;perspective:700px;flex:none}
+.emblem>div{position:relative;width:100%;height:100%;transform-style:preserve-3d}
+.tilt{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateZ(-22deg) rotateX(72deg);animation:ringTilt 4.5s ease-in-out infinite alternate}
+.ring{position:absolute;left:11px;top:11px;width:158px;height:158px;border-radius:50%;background:conic-gradient(from 0deg,#B9831C,#E2AE3C 25%,#FFE7A3 38%,#F2C55A 46%,#D19A28 70%,#B9831C);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 12px),#000 calc(100% - 12px));mask:radial-gradient(farthest-side,transparent calc(100% - 12px),#000 calc(100% - 12px));animation:ringSpin 3.2s linear infinite}
+.star{position:absolute;inset:0;transform:translateZ(0);filter:drop-shadow(0 6px 10px rgba(0,0,0,0.5));animation:starFloat 3.6s ease-in-out infinite alternate}
+.star>div{position:absolute;inset:0}
+
+.divider{width:3px;height:120px;background:#7B4FD6;flex:none}
+.logo{font-family:'Unbounded',sans-serif;font-size:clamp(36px,6vw,68px);line-height:1;letter-spacing:0.03em;display:flex;align-items:baseline}
+.logo b{font-weight:700;color:#F6F5F8}
+.logo span{font-weight:500;color:#A57CF2}
+
+.links{display:flex;align-items:center;gap:18px}
+.links a{width:48px;height:48px;border-radius:50%;border:1px solid #3A2C5C;background:rgba(123,79,214,0.06);color:#FFFFFF;display:flex;align-items:center;justify-content:center;transition:color .2s,border-color .2s,transform .2s}
+.links a:hover{border-color:#7B4FD6;transform:translateY(-2px)}
+.dot{width:4px;height:4px;border-radius:50%;background:#4A3F5E}
+
+@keyframes ringSpin{to{transform:rotateZ(360deg)}}
+@keyframes ringTilt{0%{transform:rotateZ(-22deg) rotateY(-28deg) rotateX(72deg)}100%{transform:rotateZ(-22deg) rotateY(28deg) rotateX(72deg)}}
+@keyframes starFloat{0%{transform:translateZ(0) translateY(-3px) rotateY(-14deg) rotateZ(-3deg)}100%{transform:translateZ(0) translateY(3px) rotateY(14deg) rotateZ(3deg)}}
+@keyframes meteor{0%{transform:translateX(0);opacity:0}2%{opacity:0.9}9%{transform:translateX(380px);opacity:0}100%{transform:translateX(380px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.meteor,.tilt,.ring,.star{animation:none!important}}
+</style>
 </head>
-
 <body>
-    <div id="particles-js"></div>
-
-    <script src="js/particles.js"></script>
-    <script src="js/script.js"></script>
-
-    <div class="content">
-        <div class="content-text">Sakatsuki.com</div>
-        <div class="content-text-mid"><span class="rotate">Miyu Sakatsuki, Miyu Ēderuferuto,Magical Sapphire</span></div>
-        <div class="content-text-bottom">powered by Azure</div>            
+<main>
+  <div class="sky" aria-hidden="true">
+    <div style="left:70%;top:8%"><div class="meteor" style="width:56px;box-shadow:28px 0 3px rgba(255,231,163,0.35);animation-duration:9s;animation-delay:1s"></div></div>
+    <div style="left:86%;top:22%"><div class="meteor gold" style="width:40px;box-shadow:20px 0 3px rgba(255,231,163,0.35);animation-duration:13s;animation-delay:4.5s"></div></div>
+    <div style="left:54%;top:5%"><div class="meteor" style="width:64px;box-shadow:32px 0 3px rgba(255,231,163,0.35);animation-duration:11s;animation-delay:7.5s"></div></div>
+    <div style="left:96%;top:46%"><div class="meteor gold" style="width:36px;box-shadow:18px 0 3px rgba(255,231,163,0.35);animation-duration:15s;animation-delay:2.5s"></div></div>
+    <div style="left:38%;top:14%"><div class="meteor" style="width:48px;box-shadow:24px 0 3px rgba(255,231,163,0.35);animation-duration:17s;animation-delay:11s"></div></div>
+  </div>
+  <div class="content">
+    <div class="brand">
+      <div class="emblem" aria-hidden="true">
+        <div>
+          <div class="tilt"><div class="ring"></div></div>
+          <div class="star">
+            <div style="background:#6A3CC8;clip-path:polygon(50% 21.9%,57.34% 41.45%,78.23% 42.39%,61.89% 55.42%,67.45% 75.58%,50% 64.06%,32.55% 75.58%,38.11% 55.42%,21.77% 42.39%,42.66% 41.45%)"></div>
+            <div style="background:#C2A3FF;clip-path:polygon(50% 51.56%,42.66% 41.45%,50% 21.9%)"></div>
+            <div style="background:#9A6FEE;clip-path:polygon(50% 51.56%,50% 21.9%,57.34% 41.45%)"></div>
+            <div style="background:#7B4FD6;clip-path:polygon(50% 51.56%,57.34% 41.45%,78.23% 42.39%)"></div>
+            <div style="background:#5B2DB8;clip-path:polygon(50% 51.56%,78.23% 42.39%,61.89% 55.42%)"></div>
+            <div style="background:#43208F;clip-path:polygon(50% 51.56%,61.89% 55.42%,67.45% 75.58%)"></div>
+            <div style="background:#43208F;clip-path:polygon(50% 51.56%,67.45% 75.58%,50% 64.06%)"></div>
+            <div style="background:#5B2DB8;clip-path:polygon(50% 51.56%,50% 64.06%,32.55% 75.58%)"></div>
+            <div style="background:#7B4FD6;clip-path:polygon(50% 51.56%,32.55% 75.58%,38.11% 55.42%)"></div>
+            <div style="background:#9A6FEE;clip-path:polygon(50% 51.56%,38.11% 55.42%,21.77% 42.39%)"></div>
+            <div style="background:#C2A3FF;clip-path:polygon(50% 51.56%,21.77% 42.39%,42.66% 41.45%)"></div>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <h1 class="logo" style="margin:0"><b>SAKATSUKI</b><span>.com</span></h1>
     </div>
+    <nav class="links">
+      <a href="#" aria-label="EmDash"><svg width="20" height="20" viewBox="0 0 75 75" fill="none" aria-hidden="true"><rect x="3" y="3" width="69" height="69" rx="10.518" stroke="currentColor" stroke-width="6"/><rect x="18" y="34" width="39.3661" height="6.56101" fill="currentColor"/></svg></a>
+      <div class="dot"></div>
+      <a href="#" aria-label="X"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a>
+      <div class="dot"></div>
+      <a href="#" aria-label="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+    </nav>
+  </div>
+</main>
 </body>
-
 </html>
