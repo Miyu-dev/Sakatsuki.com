@@ -70,6 +70,7 @@ main {
   width: 180px;
   height: 180px;
   perspective: 700px;
+  transform-style: preserve-3d; /* リングと星を同じ3D空間に置き、リングが星の前後を回るようにする */
 }
 .tilt {
   position: absolute;
